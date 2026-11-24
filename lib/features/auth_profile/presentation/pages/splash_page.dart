@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/creova_widgets.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
+
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 1800), () {
+      if (mounted) context.go('/onboarding');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
