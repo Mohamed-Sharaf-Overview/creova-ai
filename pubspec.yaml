@@ -1,0 +1,27 @@
+name: creova_ai
+description: "CREOVA AI - AI-powered influencer marketing platform (graduation project UI)."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.14.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  go_router: ^16.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter.ttf
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo.ttf
