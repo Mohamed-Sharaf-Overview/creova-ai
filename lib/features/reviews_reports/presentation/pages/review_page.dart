@@ -34,7 +34,7 @@ class ReviewPage extends StatelessWidget {
         const Text('One review per project - ratings update the provider score and improve future matches.',
             textAlign: TextAlign.center, style: TextStyle(fontSize: 11.5, color: C.textFaint, height: 1.5)),
         const SizedBox(height: 22),
-        PrimaryButton(label: 'Submit review', icon: Icons.send_rounded, onTap: () {}),
+        PrimaryButton(label: 'Submit review', icon: Icons.send_rounded, to: '/home'),
       ]),
     );
   }

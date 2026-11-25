@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../theme/app_theme.dart';
 
 /// Rounded card used across the app.
@@ -9,6 +10,7 @@ class GCard extends StatelessWidget {
   final Gradient? gradient;
   final double radius;
   final VoidCallback? onTap;
+  final String? to;
   const GCard({
     super.key,
     required this.child,
@@ -17,6 +19,7 @@ class GCard extends StatelessWidget {
     this.gradient,
     this.radius = 20,
     this.onTap,
+    this.to,
   });
 
   @override
@@ -31,8 +34,9 @@ class GCard extends StatelessWidget {
       ),
       child: child,
     );
-    if (onTap == null) return box;
-    return GestureDetector(onTap: onTap, child: box);
+    final tap = onTap ?? (to != null ? () => context.push(to!) : null);
+    if (tap == null) return box;
+    return GestureDetector(behavior: HitTestBehavior.opaque, onTap: tap, child: box);
   }
 }
 
@@ -71,13 +75,15 @@ class PrimaryButton extends StatelessWidget {
   final String label;
   final IconData? icon;
   final VoidCallback? onTap;
+  final String? to;
   final bool expand;
-  const PrimaryButton({super.key, required this.label, this.icon, this.onTap, this.expand = true});
+  const PrimaryButton({super.key, required this.label, this.icon, this.onTap, this.to, this.expand = true});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap ?? (to != null ? () => context.push(to!) : null),
       child: Container(
         width: expand ? double.infinity : null,
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 22),
@@ -103,12 +109,14 @@ class GhostButton extends StatelessWidget {
   final String label;
   final IconData? icon;
   final VoidCallback? onTap;
-  const GhostButton({super.key, required this.label, this.icon, this.onTap});
+  final String? to;
+  const GhostButton({super.key, required this.label, this.icon, this.onTap, this.to});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap ?? (to != null ? () => context.push(to!) : null),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 14),
@@ -317,13 +325,20 @@ class BottomNav extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           for (var i = 0; i < items.length; i++)
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(items[i].$1, size: 23, color: i == active ? C.accentSoft : C.textFaint),
-                const SizedBox(height: 3),
-                Text(items[i].$2, style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600, color: i == active ? C.accentSoft : C.textFaint)),
-              ],
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () => context.go(items[i].$3),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(items[i].$1, size: 23, color: i == active ? C.accentSoft : C.textFaint),
+                    const SizedBox(height: 3),
+                    Text(items[i].$2, style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600, color: i == active ? C.accentSoft : C.textFaint)),
+                  ],
+                ),
+              ),
             ),
         ],
       ),
@@ -359,10 +374,14 @@ class BackHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: 38, height: 38,
-          decoration: BoxDecoration(color: C.cardAlt, borderRadius: BorderRadius.circular(13), border: Border.all(color: C.border)),
-          child: const Icon(Icons.arrow_back_ios_new_rounded, size: 16, color: C.text),
+        GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () => context.canPop() ? context.pop() : context.go('/home'),
+          child: Container(
+            width: 38, height: 38,
+            decoration: BoxDecoration(color: C.cardAlt, borderRadius: BorderRadius.circular(13), border: Border.all(color: C.border)),
+            child: const Icon(Icons.arrow_back_ios_new_rounded, size: 16, color: C.text),
+          ),
         ),
         const SizedBox(width: 14),
         Expanded(child: Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: C.text))),

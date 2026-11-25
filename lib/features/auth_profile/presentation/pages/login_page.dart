@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/creova_widgets.dart';
 
@@ -26,7 +28,7 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 12),
               const Align(alignment: Alignment.centerRight, child: Text('Forgot password?', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: C.accentSoft))),
               const SizedBox(height: 24),
-              PrimaryButton(label: 'Sign in', onTap: () {}),
+              PrimaryButton(label: 'Sign in', to: '/home'),
               const SizedBox(height: 22),
               const Row(children: [
                 Expanded(child: Divider(color: C.border)),
@@ -34,13 +36,13 @@ class LoginPage extends StatelessWidget {
                 Expanded(child: Divider(color: C.border)),
               ]),
               const SizedBox(height: 22),
-              const GhostButton(label: 'Continue with Google', icon: Icons.g_mobiledata_rounded),
+              const GhostButton(label: 'Continue with Google', icon: Icons.g_mobiledata_rounded, to: '/home'),
               const SizedBox(height: 28),
-              const Center(
+              Center(
                 child: Text.rich(TextSpan(
                   text: "New to CREOVA? ",
-                  style: TextStyle(color: C.textDim, fontSize: 13.5),
-                  children: [TextSpan(text: 'Create account', style: TextStyle(color: C.accentSoft, fontWeight: FontWeight.w700))],
+                  style: const TextStyle(color: C.textDim, fontSize: 13.5),
+                  children: [TextSpan(text: 'Create account', style: const TextStyle(color: C.accentSoft, fontWeight: FontWeight.w700), recognizer: TapGestureRecognizer()..onTap = () => context.push('/register'))],
                 )),
               ),
             ],

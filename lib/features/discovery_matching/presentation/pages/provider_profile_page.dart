@@ -68,9 +68,9 @@ class ProviderProfilePage extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 24),
-        PrimaryButton(label: 'Send proposal', icon: Icons.send_rounded, onTap: () {}),
+        PrimaryButton(label: 'Send proposal', icon: Icons.send_rounded, to: '/proposals'),
         const SizedBox(height: 12),
-        const GhostButton(label: 'Message first', icon: Icons.chat_bubble_outline_rounded),
+        const GhostButton(label: 'Message first', icon: Icons.chat_bubble_outline_rounded, to: '/workspace'),
       ]),
     );
   }

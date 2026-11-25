@@ -50,6 +50,7 @@ class ProposalsPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: GCard(
+        to: '/workspace',
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
             Avatar(name, size: 44),

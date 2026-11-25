@@ -35,9 +35,9 @@ class DeliverablesPage extends StatelessWidget {
         _item('Reel 3 - GRWM', 'GRWM_v1.mp4', 'v1', 'Changes requested', C.danger, Icons.edit_note_rounded, false),
         _item('Story set (3 frames)', 'Not uploaded yet', '-', 'Pending', C.textFaint, Icons.upload_file_rounded, false),
         const SizedBox(height: 22),
-        PrimaryButton(label: 'Approve Reel 1', icon: Icons.check_rounded, onTap: () {}),
+        PrimaryButton(label: 'Approve Reel 1', icon: Icons.check_rounded, to: '/review'),
         const SizedBox(height: 12),
-        const GhostButton(label: 'Request changes', icon: Icons.edit_outlined),
+        const GhostButton(label: 'Request changes', icon: Icons.edit_outlined, to: '/workspace'),
       ]),
     );
   }

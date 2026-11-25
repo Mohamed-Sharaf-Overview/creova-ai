@@ -62,6 +62,7 @@ class DiscoverPage extends StatelessWidget {
     bool topPick = false,
   }) {
     return GCard(
+      to: '/provider',
       padding: const EdgeInsets.all(15),
       child: Padding(
         padding: const EdgeInsets.only(bottom: 14),

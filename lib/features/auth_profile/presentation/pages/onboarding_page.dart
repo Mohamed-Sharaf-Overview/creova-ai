@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/creova_widgets.dart';
 
@@ -14,7 +15,7 @@ class OnboardingPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Align(alignment: Alignment.centerRight, child: Text('Skip', style: TextStyle(color: C.textFaint, fontWeight: FontWeight.w600))),
+              Align(alignment: Alignment.centerRight, child: GestureDetector(behavior: HitTestBehavior.opaque, onTap: () => context.go('/home'), child: const Padding(padding: EdgeInsets.fromLTRB(16, 8, 4, 8), child: Text('Skip', style: TextStyle(color: C.textFaint, fontWeight: FontWeight.w600))))),
               const SizedBox(height: 22),
               Container(
                 height: 300,
@@ -59,7 +60,7 @@ class OnboardingPage extends StatelessWidget {
                 _dot(true), _dot(false), _dot(false),
               ]),
               const SizedBox(height: 18),
-              PrimaryButton(label: 'Get started', icon: Icons.arrow_forward_rounded, onTap: () {}),
+              PrimaryButton(label: 'Get started', icon: Icons.arrow_forward_rounded, onTap: () => context.go('/login')),
             ],
           ),
         ),

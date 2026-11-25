@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/creova_widgets.dart';
 
@@ -13,10 +14,14 @@ class WorkspaceChatPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 16, 20, 10),
             child: Row(children: [
-              Container(
-                width: 38, height: 38,
-                decoration: BoxDecoration(color: C.cardAlt, borderRadius: BorderRadius.circular(13), border: Border.all(color: C.border)),
-                child: const Icon(Icons.arrow_back_ios_new_rounded, size: 16, color: C.text),
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => context.canPop() ? context.pop() : context.go('/proposals'),
+                child: Container(
+                  width: 38, height: 38,
+                  decoration: BoxDecoration(color: C.cardAlt, borderRadius: BorderRadius.circular(13), border: Border.all(color: C.border)),
+                  child: const Icon(Icons.arrow_back_ios_new_rounded, size: 16, color: C.text),
+                ),
               ),
               const SizedBox(width: 12),
               const Avatar('Nora Khaled', size: 40),
@@ -40,7 +45,7 @@ class WorkspaceChatPage extends StatelessWidget {
                 _in('Hi! I reviewed the brief. For the first reel I am thinking a morning-routine hook with the glow serum.', '10:02'),
                 _out('Sounds great. Can you include the promo code in the caption?', '10:05'),
                 _in('Sure, GLOW20 in caption and pinned comment. I will shoot tomorrow.', '10:07'),
-                _file('Reel_draft_v1.mp4', 'Video - 84 MB - Version 1', '11:40'),
+                GestureDetector(onTap: () => context.push('/workspace/deliverables'), child: _file('Reel_draft_v1.mp4', 'Video - 84 MB - Version 1', '11:40')),
                 _out('Watched it, love the hook! Two small notes in the review.', '11:58'),
                 _system('Deliverable "Reel 1" moved to Changes requested'),
                 _in('On it, v2 tonight.', '12:01'),

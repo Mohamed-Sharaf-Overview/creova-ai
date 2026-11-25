@@ -51,11 +51,11 @@ class HomeArPage extends StatelessWidget {
               ),
               const SizedBox(height: 22),
               Row(children: [
-                Expanded(child: _action(Icons.auto_awesome_rounded, 'حملة جديدة بالذكاء الاصطناعي', C.accent, ar)),
+                Expanded(child: _action(Icons.auto_awesome_rounded, 'حملة جديدة بالذكاء الاصطناعي', C.accent, ar, '/campaign/new')),
                 const SizedBox(width: 12),
-                Expanded(child: _action(Icons.travel_explore_rounded, 'اكتشف صناع المحتوى', C.teal, ar)),
+                Expanded(child: _action(Icons.travel_explore_rounded, 'اكتشف صناع المحتوى', C.teal, ar, '/discover')),
                 const SizedBox(width: 12),
-                Expanded(child: _action(Icons.work_outline_rounded, 'مساحة العمل', C.pink, ar)),
+                Expanded(child: _action(Icons.work_outline_rounded, 'مساحة العمل', C.pink, ar, '/workspace')),
               ]),
               const SizedBox(height: 22),
               Text('النشاط الأخير', style: ar.copyWith(fontSize: 17, fontWeight: FontWeight.w700, color: C.text)),
@@ -70,8 +70,9 @@ class HomeArPage extends StatelessWidget {
     );
   }
 
-  Widget _action(IconData icon, String label, Color color, TextStyle ar) {
+  Widget _action(IconData icon, String label, Color color, TextStyle ar, String to) {
     return GCard(
+      to: to,
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
       child: Column(children: [
         Container(

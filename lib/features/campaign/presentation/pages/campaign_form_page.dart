@@ -67,7 +67,7 @@ class CampaignFormPage extends StatelessWidget {
           value: 'Launching our new skincare line for Ramadan. Target: women 18-35 in Egypt. We want authentic UGC reels and paid amplification on Meta.',
         ),
         const SizedBox(height: 26),
-        PrimaryButton(label: 'Generate AI plan', icon: Icons.auto_awesome_rounded, onTap: () {}),
+        PrimaryButton(label: 'Generate AI plan', icon: Icons.auto_awesome_rounded, to: '/campaign/plan/generating'),
         const SizedBox(height: 12),
         const Center(child: Text('Plan generation usually takes 10-30 seconds', style: TextStyle(fontSize: 12, color: C.textFaint))),
       ]),

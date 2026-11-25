@@ -26,7 +26,7 @@ class RoleSelectPage extends StatelessWidget {
               const SizedBox(height: 14),
               _role(Icons.video_camera_front_rounded, 'UGC Creator', 'Show your portfolio and win content deals.', false, C.pink),
               const Spacer(),
-              PrimaryButton(label: 'Continue', onTap: () {}),
+              PrimaryButton(label: 'Continue', to: '/home'),
             ],
           ),
         ),

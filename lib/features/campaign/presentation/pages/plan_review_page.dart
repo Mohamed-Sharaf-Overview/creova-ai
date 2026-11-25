@@ -55,12 +55,12 @@ class PlanReviewPage extends StatelessWidget {
           Expanded(child: StatTile(value: '9-12', label: 'Reels', icon: Icons.video_library_rounded, color: C.teal)),
         ]),
         const SizedBox(height: 26),
-        PrimaryButton(label: 'Find matching creators', icon: Icons.travel_explore_rounded, onTap: () {}),
+        PrimaryButton(label: 'Find matching creators', icon: Icons.travel_explore_rounded, to: '/discover'),
         const SizedBox(height: 12),
         const Row(children: [
           Expanded(child: GhostButton(label: 'Edit plan', icon: Icons.edit_outlined)),
           SizedBox(width: 12),
-          Expanded(child: GhostButton(label: 'Regenerate', icon: Icons.refresh_rounded)),
+          Expanded(child: GhostButton(label: 'Regenerate', icon: Icons.refresh_rounded, to: '/campaign/plan/generating')),
         ]),
       ]),
     );

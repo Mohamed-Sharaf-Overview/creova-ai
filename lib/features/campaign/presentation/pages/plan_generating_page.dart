@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/creova_widgets.dart';
 
-class PlanGeneratingPage extends StatelessWidget {
+class PlanGeneratingPage extends StatefulWidget {
   const PlanGeneratingPage({super.key});
+
+  @override
+  State<PlanGeneratingPage> createState() => _PlanGeneratingPageState();
+}
+
+class _PlanGeneratingPageState extends State<PlanGeneratingPage> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 2500), () {
+      if (mounted) context.pushReplacement('/campaign/plan');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +49,7 @@ class PlanGeneratingPage extends StatelessWidget {
             const Spacer(),
             const Tag('Running in background - GeneratePlanJob', color: C.teal, icon: Icons.cloud_queue_rounded),
             const SizedBox(height: 14),
-            const GhostButton(label: 'Notify me and close', icon: Icons.notifications_active_outlined),
+            const GhostButton(label: 'Notify me and close', icon: Icons.notifications_active_outlined, to: '/notifications'),
           ]),
         ),
       ),

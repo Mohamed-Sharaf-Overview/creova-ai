@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/creova_widgets.dart';
 
@@ -21,12 +22,13 @@ class HomePage extends StatelessWidget {
                 Text('Nova Cosmetics', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: C.text)),
               ]),
             ),
-            _iconBtn(Icons.search_rounded),
+            _iconBtn(Icons.search_rounded, '/discover', context),
             const SizedBox(width: 8),
-            _iconBtn(Icons.notifications_none_rounded, dot: true),
+            _iconBtn(Icons.notifications_none_rounded, '/notifications', context, dot: true),
           ]),
           const SizedBox(height: 22),
           GCard(
+            to: '/workspace',
             gradient: const LinearGradient(colors: [Color(0xFF2A2160), Color(0xFF173040)], begin: Alignment.topLeft, end: Alignment.bottomRight),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(children: [
@@ -59,11 +61,11 @@ class HomePage extends StatelessWidget {
           const SectionTitle('Quick actions'),
           const SizedBox(height: 12),
           Row(children: [
-            Expanded(child: _action(Icons.auto_awesome_rounded, 'New AI\ncampaign', C.accent)),
+            Expanded(child: _action(Icons.auto_awesome_rounded, 'New AI\ncampaign', C.accent, '/campaign/new')),
             const SizedBox(width: 12),
-            Expanded(child: _action(Icons.travel_explore_rounded, 'Discover\ncreators', C.teal)),
+            Expanded(child: _action(Icons.travel_explore_rounded, 'Discover\ncreators', C.teal, '/discover')),
             const SizedBox(width: 12),
-            Expanded(child: _action(Icons.work_outline_rounded, 'Open\nworkspace', C.pink)),
+            Expanded(child: _action(Icons.work_outline_rounded, 'Open\nworkspace', C.pink, '/workspace')),
           ]),
           const SizedBox(height: 22),
           const SectionTitle('Recent activity', action: 'See all'),
@@ -77,19 +79,20 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _iconBtn(IconData icon, {bool dot = false}) {
-    return Stack(children: [
+  Widget _iconBtn(IconData icon, String to, BuildContext context, {bool dot = false}) {
+    return GestureDetector(behavior: HitTestBehavior.opaque, onTap: () => context.go(to), child: Stack(children: [
       Container(
         width: 42, height: 42,
         decoration: BoxDecoration(color: C.card, borderRadius: BorderRadius.circular(14), border: Border.all(color: C.border)),
         child: Icon(icon, size: 20, color: C.text),
       ),
       if (dot) Positioned(top: 9, right: 10, child: Container(width: 8, height: 8, decoration: const BoxDecoration(color: C.pink, shape: BoxShape.circle))),
-    ]);
+    ]));
   }
 
-  Widget _action(IconData icon, String label, Color color) {
+  Widget _action(IconData icon, String label, Color color, String to) {
     return GCard(
+      to: to,
       padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 10),
       child: Column(children: [
         Container(
